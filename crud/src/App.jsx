@@ -1,24 +1,33 @@
-import  { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useState, useEffect } from 'react';
 
 function App() {
   const [items, setItems] = useState([]);
   const [name, setName] = useState('');
 
   useEffect(() => {
-    axios.get('https://crud-backend-iota.vercel.app/items')
-      .then(response => setItems(response.data))
+    fetch('https://crud-backend-iota.vercel.app/items')
+      .then(response => response.json())
+      .then(data => setItems(data))
       .catch(error => console.error(error));
   }, []);
 
   const addItem = () => {
-    axios.post('https://crud-backend-iota.vercel.app/items', { name })
-      .then(response => setItems([...items, response.data]))
+    fetch('https://crud-backend-iota.vercel.app/items', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ name }),
+    })
+      .then(response => response.json())
+      .then(data => setItems([...items, data]))
       .catch(error => console.error(error));
   };
 
   const deleteItem = (id) => {
-    axios.delete(`https://crud-backend-iota.vercel.app/items/${id}`)
+    fetch(`https://crud-backend-iota.vercel.app/items/${id}`, {
+      method: 'DELETE',
+    })
       .then(() => setItems(items.filter(item => item._id !== id)))
       .catch(error => console.error(error));
   };
