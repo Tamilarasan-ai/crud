@@ -6,19 +6,19 @@ function App() {
   const [name, setName] = useState('');
 
   useEffect(() => {
-    axios.get('http://localhost:5000/items')
+    axios.get('https://crud-backend-iota.vercel.app/items')
       .then(response => setItems(response.data))
       .catch(error => console.error(error));
   }, []);
 
   const addItem = () => {
-    axios.post('http://localhost:5000/items', { name })
+    axios.post('https://crud-backend-iota.vercel.app/items', { name })
       .then(response => setItems([...items, response.data]))
       .catch(error => console.error(error));
   };
 
   const deleteItem = (id) => {
-    axios.delete(`http://localhost:5000/items/${id}`)
+    axios.delete(`https://crud-backend-iota.vercel.app/items/${id}`)
       .then(() => setItems(items.filter(item => item._id !== id)))
       .catch(error => console.error(error));
   };

@@ -9,6 +9,14 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.use(cors(
+    {
+    origin: ["https://crud-frontend-hazel.vercel.app/"],
+    methods: ["POST", "GET" ,"PUT" , "DELLETE"],
+    credentials: true
+}
+));
+
 const PORT = process.env.PORT || 5000;
 const MONGO_URI = process.env.MONGO_URI;
 
