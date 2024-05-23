@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(cors(
     {
     origin: ["https://crud-frontend-hazel.vercel.app"],
-    methods: ["POST", "GET" ,"PUT" , "DELLETE"],
+    methods: ["POST", "GET" ,"PUT" , "DELETE"],
     credentials: true
 }
 ));
