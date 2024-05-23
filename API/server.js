@@ -23,6 +23,8 @@ mongoose.connect('mongodb+srv://Crud:crud123@cluster0.pq5zgaz.mongodb.net/crud?r
   .then(() => console.log('MongoDB connected'))
   .catch((error) => console.error('MongoDB connection error:', error));
 
+  app.get("/", (req, res) => {res.json("Hello")});
+
   // Create
 app.post('/items', async (req, res) => {
     try {
